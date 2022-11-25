@@ -1,0 +1,17 @@
+<mat-accordion multi="true" *ngIf = "sentPosts.length>0">
+    <mat-expansion-panel *ngFor = "let post of sentPosts">
+        <mat-expansion-panel-header>
+            {{post.title}}
+        </mat-expansion-panel-header>
+        <div class="post-image">
+            <img [src]="post.imagePath" [alt]="post.title">
+        </div>
+        <p>{{post.content}}</p>
+        <mat-action-row *ngIf="isAuth && userId == post.userId">
+            <a [routerLink]="['/edit', post.id]" mat-button color="accent">Edit</a>
+            <button mat-button color="warn" (click)="onDelete(post.id)">Delete</button>
+          </mat-action-row>
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator *ngIf = "sentPosts.length>0" [length]="totalLength" [pageSize]="postSize" [pageSizeOptions]="pageOption" (page)="onChangePage($event)"></mat-paginator>
+<p class="info-text mat-body-l" *ngIf= "sentPosts.length <= 0"> No posts added yet </p>
