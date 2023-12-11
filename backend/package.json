@@ -1,6 +1,9 @@
 {
   "name": "mean-app",
   "version": "0.0.0",
+  "scripts": {
+    "dev-start": "nodemon ./server.js"
+  },
   "private": true,
   "dependencies": {
     "bcrypt": "^5.0.1",

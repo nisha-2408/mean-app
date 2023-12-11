@@ -8,16 +8,16 @@ const userRoutes = require('./routes/user');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/mean-app')
+mongoose.connect('mongodb+srv://nisha-p:drL5cMaTNvR1EKuG@cluster0.ard7lee.mongodb.net/mean?retryWrites=true&w=majority')
     .then(() => {
         console.log('connection established');
     })
-    .catch(() => {
-        console.log('connection failed');
+    .catch((error) => {
+        console.log('connection failed', error);
     })
 
 app.use(body.json());
-app.use(body.urlencoded({extended: false}));
+app.use(body.urlencoded({extended: false})); 
 
 app.use("/images", express.static(path.join("backend/images")))
 

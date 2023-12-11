@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  frontend:
+    restart:
+      always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        - 4200:4200
+    depends_on:
+      - backend
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run start
+  backend:
+    restart:
+      always
+    build:
+      context: ./backend
+      dockerfile: ./backend/Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app/backend
+      - /usr/src/app/backend/node_modules
+    command: npm run dev-start
